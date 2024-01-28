@@ -2,11 +2,15 @@ package com.org.adi.customer.domain;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name ="CORE_CUSTOMER")
 public class CustomerDomain {
