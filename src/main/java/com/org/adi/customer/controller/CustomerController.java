@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/v1")
 public class CustomerController {
 
-    private CustomerService service;
+    private final CustomerService service;
 
     public CustomerController(CustomerService service) {
         this.service = service;
@@ -25,7 +25,7 @@ public class CustomerController {
 
     @PostMapping(path = "/customer")
     public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customerRequest){
-            CustomerResponse customerResponse = this.service.newCustomer(customerRequest, true);
+            CustomerResponse customerResponse = this.service.newCustomer(customerRequest, false);
             return ResponseEntity.ok(customerResponse);
     }
 }
