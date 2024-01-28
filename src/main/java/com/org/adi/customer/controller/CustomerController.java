@@ -1,5 +1,6 @@
 package com.org.adi.customer.controller;
 
+import com.org.adi.customer.domain.CustomerDto;
 import com.org.adi.customer.domain.CustomerRequest;
 import com.org.adi.customer.domain.CustomerResponse;
 
@@ -27,5 +28,10 @@ public class CustomerController {
     public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customerRequest){
             CustomerResponse customerResponse = this.service.newCustomer(customerRequest, false);
             return ResponseEntity.ok(customerResponse);
+    }
+
+    @GetMapping(path = "/customer/{fName}")
+    public ResponseEntity<CustomerDto> findByEmail(@PathVariable ("fName") String fName){
+            return ResponseEntity.ok(this.service.byName(fName));
     }
 }
