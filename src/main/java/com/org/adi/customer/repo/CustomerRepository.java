@@ -4,4 +4,6 @@ import com.org.adi.customer.domain.CustomerDomain;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRepository extends JpaRepository<CustomerDomain, String> {
+
+    public CustomerDomain findByFirstName(String firstName);
 }

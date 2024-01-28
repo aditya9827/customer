@@ -22,16 +22,6 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -57,8 +47,44 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>local</id>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			<properties>
+				<activeprofile>local</activeprofile>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>aws</id>
+			<dependencies>
+				<dependency>
+					<groupId>com.mysql</groupId>
+					<artifactId>mysql-connector-j</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+			<properties>
+				<activeprofile>aws</activeprofile>
+			</properties>
+		</profile>
+	</profiles>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

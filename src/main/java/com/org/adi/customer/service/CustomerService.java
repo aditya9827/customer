@@ -1,6 +1,7 @@
 package com.org.adi.customer.service;
 
 import com.org.adi.customer.domain.CustomerDomain;
+import com.org.adi.customer.domain.CustomerDto;
 import com.org.adi.customer.domain.CustomerRequest;
 import com.org.adi.customer.domain.CustomerResponse;
 import com.org.adi.customer.repo.CustomerRepository;
@@ -37,5 +38,12 @@ public class CustomerService {
             this.customerRepository.save(customer);
             return new CustomerResponse("Customer Created");
         }
+    }
+
+    public CustomerDto byName(String name){
+        CustomerDomain byFirstName = this.customerRepository.findByFirstName(name);
+
+        return new CustomerDto(byFirstName.getFirstName(), byFirstName.getLastName(), byFirstName.getAge(), null);
+
     }
 }
