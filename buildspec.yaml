@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo Nothing to do in pre-build phase
+  build:
+    commands:
+      - echo Build stared on `date`
+      - mvn install -DskipTests=true
+  post_build:
+    commands:
+      - echo Nothing to do in the post_build phase
+artifacts:
+  files:
+    - target/customer-0.0.1-SNAPSHOT.jar
