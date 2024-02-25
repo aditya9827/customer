@@ -9,7 +9,7 @@ phases:
       - echo Nothing to do in pre-build phase
   build:
     commands:
-      - echo Build stared on `date`
+      - echo Build started
       - mvn install -DskipTests=true
   post_build:
     commands:
