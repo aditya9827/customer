@@ -41,8 +41,9 @@ public class CustomerService {
     }
 
     public CustomerDto byName(String name){
+        log.info("Getting customer by name");
         CustomerDomain byFirstName = this.customerRepository.findByFirstName(name);
-
+        log.info("customer by name Okay");
         return new CustomerDto(byFirstName.getFirstName(), byFirstName.getLastName(), byFirstName.getAge(), null);
 
     }
