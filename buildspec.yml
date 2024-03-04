@@ -7,6 +7,7 @@ phases:
   pre_build:
     commands:
       - echo Logging to ECR
+      - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI= 211125731692.dkr.ecr.ap-south-1.amazonaws.com/aditya_repo
       - COMMIT_HASH=$ (echo $CODEBUILD_ RESOLVED_SOURCE_VERSION | cut -c 1-7)
