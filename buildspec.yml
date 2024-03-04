@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto21
+  pre_build:
+    commands:
+      - echo Logging to ECR
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI= 211125731692.dkr.ecr.ap-south-1.amazonaws.com/aditya_repo
+      - COMMIT_HASH=$ (echo $CODEBUILD_ RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+  build:
+    commands:
+      - echo Build docker image
+      - docker build -t $REPOSITORY _URI:latest .
+      - docker tag $REPOSITORY _URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo docker image build completed
+      - echo pushing docker image
+      - docker push $REPOSITORY _URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+artifacts:
+  files:
+    - target/customer-service.jar
