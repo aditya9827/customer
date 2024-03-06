@@ -4,7 +4,7 @@ phases:
   install:
     runtime-versions:
       java: corretto21
-      docker: 25.0.3
+      docker: 18
   pre_build:
     commands:
       - echo Logging to ECR
