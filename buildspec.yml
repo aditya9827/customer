@@ -8,7 +8,7 @@ phases:
     commands:
       - echo Logging to ECR
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 211125731692.dkr.ecr.ap-south-1.amazonaws.com/aditya_repo
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 211125731692.dkr.ecr.ap-south-1.amazonaws.com
       - REPOSITORY_URI= 211125731692.dkr.ecr.ap-south-1.amazonaws.com/aditya_repo
       - COMMIT_HASH=$ (echo $CODEBUILD_ RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
