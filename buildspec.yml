@@ -15,13 +15,14 @@ phases:
   build:
     commands:
       - echo Build docker image
-      - docker build -t $REPOSITORY _URI:latest .
+      - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo docker image build completed
       - echo pushing docker image
-      - docker push $REPOSITORY _URI:latest
+      - echo $REPOSITORY_URI
+      - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
 artifacts:
   files:
