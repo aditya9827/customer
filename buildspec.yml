@@ -12,13 +12,14 @@ phases:
   build:
     commands:
       - echo Build docker image
-      - docker build -t $REPOSITORY_URI:$SERVICE_NAME:latest .
+      - docker build -t $SERVICE_NAME:latest .
+      - docker tag $SERVICE_NAME:latest $REPOSITORY_URI/$SERVICE_NAME:latest
   post_build:
     commands:
       - echo docker image build completed
       - echo pushing docker image
       - echo $REPOSITORY_URI
-      - docker push $REPOSITORY_URI:$SERVICE_NAME:latest
+      - docker push $REPOSITORY_URI/$SERVICE_NAME:latest
 artifacts:
   files:
     - target/customer-service.jar
