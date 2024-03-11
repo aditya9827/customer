@@ -20,7 +20,7 @@ phases:
       - echo pushing docker image
       - echo $REPOSITORY_URI
       - docker push $REPOSITORY_URI:$SERVICE_NAME
-      - printf '[{"name": "customer-service", "imageuri": "%s" } ]' $REPOSITORY_URI:$SERVICE_NAME › imagedefinitions.json
+      - printf '[{"name":"customer-service","imageUri":"%s"}]' $REPOSITORY_URI:$SERVICE_NAME > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files:
