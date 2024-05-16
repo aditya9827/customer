@@ -26,3 +26,4 @@ replay_pid*
 # IDE file
 *.idea
 target/**
+*.DS_Store
